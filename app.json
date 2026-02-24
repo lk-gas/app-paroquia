@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "AppSaoLucas",
+    "slug": "AppSaoLucas",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon_saolucas.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/icon_saolucas.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#8D6E63"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon_saolucas.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
