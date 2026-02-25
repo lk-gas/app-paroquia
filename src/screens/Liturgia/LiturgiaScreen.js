@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, StatusBar, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, StatusBar } from 'react-native';
+// Substituído o SafeAreaView nativo pelo do safe-area-context
+import { SafeAreaView } from 'react-native-safe-area-context'; 
 import axios from 'axios';
 import { Ionicons } from '@expo/vector-icons';
 
-// Adicionado { navigation } para evitar erros de navegação interna
 export default function LiturgiaScreen({ navigation }) {
   const [dataSelecionada, setDataSelecionada] = useState(new Date());
   const [liturgia, setLiturgia] = useState(null);
@@ -14,7 +15,6 @@ export default function LiturgiaScreen({ navigation }) {
     setLoading(true);
     setErro(false);
     try {
-      // API de Liturgia Diária
       const response = await axios.get(`https://liturgia.up.railway.app/?dia=${date.getDate()}&mes=${date.getMonth() + 1}`);
       setLiturgia(response.data);
     } catch (error) {
@@ -36,7 +36,8 @@ export default function LiturgiaScreen({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    // Aplicado o edges top para garantir que a cor de fundo suba até o topo
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <StatusBar barStyle="light-content" />
       
       {/* Seletor de Datas */}
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: 'space-between', 
     paddingHorizontal: 20, 
-    paddingVertical: 20,
+    paddingVertical: 10, // Reduzido um pouco para compensar o SafeArea
   },
   btnSeta: { backgroundColor: 'rgba(255,255,255,0.2)', padding: 10, borderRadius: 12 },
   dataAtual: { alignItems: 'center' },

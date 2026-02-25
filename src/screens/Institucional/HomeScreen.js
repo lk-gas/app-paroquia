@@ -4,7 +4,6 @@ import {
   ImageBackground, StatusBar, ScrollView, Image, TouchableOpacity 
 } from 'react-native';
 
-// Mudança aqui: Importando do local correto
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { database } from '../../firebaseConfig'; 
@@ -32,10 +31,9 @@ export default function HomeScreen({ navigation }) {
       <StatusBar barStyle="light-content" />
       <ImageBackground source={minhaImagem} style={styles.background} resizeMode="cover">
         <LinearGradient
-          colors={['rgba(0,0,0,0.1)', 'rgba(78, 52, 46, 0.7)', '#4E342E']} 
+          colors={['rgba(0,0,0,0.1)', 'rgba(78, 52, 46, 0.6)', '#4E342E']} 
           style={styles.overlay}
         >
-          {/* SafeAreaView agora envolve o conteúdo para respeitar o notch */}
           <SafeAreaView style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
               
@@ -56,6 +54,11 @@ export default function HomeScreen({ navigation }) {
                   <Text style={styles.textoAviso}>{aviso}</Text>
                 )}
               </View>
+
+              <TouchableOpacity style={styles.botaoTerco}onPress={() => navigation.navigate('MenuTerco')}>
+                <Ionicons name="sunny" size={24} color="#fff" />
+                <Text style={styles.textoBotao}>SANTO TERÇO</Text>
+              </TouchableOpacity>
 
               <TouchableOpacity style={styles.botaoLiturgia} onPress={() => navigation.navigate('MenuLiturgia')}>
                 <Ionicons name="journal" size={24} color="#fff" />
@@ -101,10 +104,14 @@ const styles = StyleSheet.create({
   headerAviso: { flexDirection: 'row', alignItems: 'center', marginBottom: 15, justifyContent: 'center' },
   label: { fontSize: 14, color: '#fff', fontWeight: 'bold', marginLeft: 8 },
   textoAviso: { fontSize: 20, color: '#fff', textAlign: 'center', lineHeight: 30 },
-  botaoLiturgia: { backgroundColor: '#795548', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15, borderRadius: 30, width: '100%', marginTop: 20, borderWidth: 1, borderColor: 'rgba(255,255,255,0.4)', elevation: 5 },
+  
+  botaoTerco: { backgroundColor: '#A1887F', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15, borderRadius: 30, width: '100%', marginTop: 20, borderWidth: 1, borderColor: '#fff', elevation: 5 },
+  
+  botaoLiturgia: { backgroundColor: '#795548', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15, borderRadius: 30, width: '100%', marginTop: 15, borderWidth: 1, borderColor: 'rgba(255,255,255,0.4)', elevation: 5 },
   botaoOracoes: { backgroundColor: '#8D6E63', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15, borderRadius: 30, width: '100%', marginTop: 15, borderWidth: 1, borderColor: 'rgba(255,255,255,0.4)', elevation: 5 },
   botaoHorarios: { backgroundColor: '#5D4037', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15, borderRadius: 30, width: '100%', marginTop: 15, borderWidth: 1, borderColor: 'rgba(255,255,255,0.4)', elevation: 5 },
   botaoInscricoes: { backgroundColor: '#00796B', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 18, borderRadius: 30, width: '100%', marginTop: 30, borderWidth: 2, borderColor: '#fff', elevation: 8 },
+  
   textoBotao: { color: '#fff', fontSize: 18, fontWeight: 'bold', marginLeft: 10 },
   footerFrase: { marginTop: 40, padding: 20, backgroundColor: 'rgba(0, 0, 0, 0.3)', borderRadius: 15, width: '100%' },
   versiculo: { color: '#D7CCC8', fontSize: 16, textAlign: 'center', fontStyle: 'italic' },

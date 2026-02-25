@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
+// Mudança aqui: importando do pacote correto
+import { SafeAreaView } from 'react-native-safe-area-context'; 
 import { Ionicons } from '@expo/vector-icons';
 
 export default function MenuLiturgiaScreen({ navigation }) {
   return (
-    <SafeAreaView style={styles.safe}>
+    // O SafeAreaView agora gerencia as margens de forma inteligente
+    <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
       <StatusBar barStyle="dark-content" />
       
       <ScrollView style={styles.container} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
@@ -16,7 +19,7 @@ export default function MenuLiturgiaScreen({ navigation }) {
         {/* BOTÃO LITURGIA DIÁRIA */}
         <TouchableOpacity 
           style={styles.card} 
-          onPress={() => navigation.navigate('LiturgiaDiaria')} // Bate com o App.js
+          onPress={() => navigation.navigate('LiturgiaDiaria')} 
           activeOpacity={0.7}
         >
           <View style={[styles.iconBox, { backgroundColor: '#EFEBE9' }]}>
@@ -32,7 +35,7 @@ export default function MenuLiturgiaScreen({ navigation }) {
         {/* BOTÃO ORAÇÕES EUCARÍSTICAS */}
         <TouchableOpacity 
           style={styles.card} 
-          onPress={() => navigation.navigate('ListaOracoesEucaristicas')} // Bate com o App.js
+          onPress={() => navigation.navigate('ListaOracoesEucaristicas')} 
           activeOpacity={0.7}
         >
           <View style={[styles.iconBox, { backgroundColor: '#FBE9E7' }]}>
@@ -45,7 +48,7 @@ export default function MenuLiturgiaScreen({ navigation }) {
           <Ionicons name="chevron-forward" size={20} color="#8D6E63" />
         </TouchableOpacity>
 
-        {/* BOTÃO RITO DA MISSA (Visual de bloqueado/em breve) */}
+        {/* BOTÃO RITO DA MISSA */}
         <TouchableOpacity 
           style={[styles.card, { opacity: 0.6 }]} 
           onPress={() => { /* Futura implementação */ }}
@@ -80,12 +83,10 @@ const styles = StyleSheet.create({
     borderRadius: 22, 
     alignItems: 'center', 
     marginBottom: 16,
-    // Sombra para iOS
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
-    // Sombra para Android
     elevation: 3,
     borderWidth: 1,
     borderColor: '#F0F0F0'
