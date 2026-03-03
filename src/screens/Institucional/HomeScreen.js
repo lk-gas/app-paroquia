@@ -1,31 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { 
-  StyleSheet, Text, View, ActivityIndicator, 
+  StyleSheet, Text, View, 
   ImageBackground, StatusBar, ScrollView, Image, TouchableOpacity 
 } from 'react-native';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { database } from '../../firebaseConfig'; 
-import { ref, onValue } from 'firebase/database';
 import { Ionicons } from '@expo/vector-icons';
 
 const minhaImagem = require('../../../assets/icon_saolucas.png');
 
 export default function HomeScreen({ navigation }) { 
-  const [aviso, setAviso] = useState('Carregando...');
-  const [carregando, setCarregando] = useState(true);
-
-  useEffect(() => {
-    const avisoRef = ref(database, 'avisos/titulo');
-    const listener = onValue(avisoRef, (snapshot) => {
-      const dados = snapshot.val();
-      setAviso(dados || "Nenhum aviso encontrado");
-      setCarregando(false);
-    });
-    return () => listener();
-  }, []);
-
   return (
     <View style={styles.flexContainer}>
       <StatusBar barStyle="light-content" />
@@ -43,19 +28,12 @@ export default function HomeScreen({ navigation }) {
               
               <Text style={styles.tituloIgreja}>Paróquia São Lucas Evangelista</Text>
               
-              <View style={styles.cardAviso}>
-                <View style={styles.headerAviso}>
-                  <Ionicons name="notifications" size={20} color="#fff" />
-                  <Text style={styles.label}>AVISO DO DIA</Text>
-                </View>
-                {carregando ? (
-                  <ActivityIndicator color="#fff" size="large" />
-                ) : (
-                  <Text style={styles.textoAviso}>{aviso}</Text>
-                )}
-              </View>
+              <TouchableOpacity style={styles.botaoAvisos} onPress={() => navigation.navigate('AvisosSemanais')}>
+                <Ionicons name="megaphone" size={24} color="#fff" />
+                <Text style={styles.textoBotao}>AVISOS SEMANAIS</Text>
+              </TouchableOpacity>
 
-              <TouchableOpacity style={styles.botaoTerco}onPress={() => navigation.navigate('MenuTerco')}>
+              <TouchableOpacity style={styles.botaoTerco} onPress={() => navigation.navigate('MenuTerco')}>
                 <Ionicons name="sunny" size={24} color="#fff" />
                 <Text style={styles.textoBotao}>SANTO TERÇO</Text>
               </TouchableOpacity>
@@ -100,13 +78,9 @@ const styles = StyleSheet.create({
   logoContainer: { width: 110, height: 110, borderRadius: 55, borderWidth: 3, borderColor: '#fff', overflow: 'hidden', marginBottom: 15, backgroundColor: '#fff', elevation: 8 },
   logoImagem: { width: '100%', height: '100%', resizeMode: 'cover' },
   tituloIgreja: { fontSize: 26, fontWeight: 'bold', color: '#fff', marginBottom: 30, textAlign: 'center', textShadowColor: 'rgba(0, 0, 0, 0.8)', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 5 },
-  cardAviso: { backgroundColor: 'rgba(0, 0, 0, 0.65)', padding: 25, borderRadius: 25, width: '100%', borderWidth: 1, borderColor: 'rgba(255, 255, 255, 0.2)', marginBottom: 10 },
-  headerAviso: { flexDirection: 'row', alignItems: 'center', marginBottom: 15, justifyContent: 'center' },
-  label: { fontSize: 14, color: '#fff', fontWeight: 'bold', marginLeft: 8 },
-  textoAviso: { fontSize: 20, color: '#fff', textAlign: 'center', lineHeight: 30 },
   
-  botaoTerco: { backgroundColor: '#A1887F', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15, borderRadius: 30, width: '100%', marginTop: 20, borderWidth: 1, borderColor: '#fff', elevation: 5 },
-  
+  botaoAvisos: { backgroundColor: '#6D4C41', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15, borderRadius: 30, width: '100%', marginTop: 10, borderWidth: 1, borderColor: '#fff', elevation: 5 },
+  botaoTerco: { backgroundColor: '#A1887F', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15, borderRadius: 30, width: '100%', marginTop: 15, borderWidth: 1, borderColor: '#fff', elevation: 5 },
   botaoLiturgia: { backgroundColor: '#795548', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15, borderRadius: 30, width: '100%', marginTop: 15, borderWidth: 1, borderColor: 'rgba(255,255,255,0.4)', elevation: 5 },
   botaoOracoes: { backgroundColor: '#8D6E63', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15, borderRadius: 30, width: '100%', marginTop: 15, borderWidth: 1, borderColor: 'rgba(255,255,255,0.4)', elevation: 5 },
   botaoHorarios: { backgroundColor: '#5D4037', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15, borderRadius: 30, width: '100%', marginTop: 15, borderWidth: 1, borderColor: 'rgba(255,255,255,0.4)', elevation: 5 },

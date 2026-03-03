@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
+// Atualizado: Importando da biblioteca que evita o alerta
+import { SafeAreaView } from 'react-native-safe-area-context'; 
 import { Ionicons } from '@expo/vector-icons';
 
-// Mudei o nome da função para bater com o App.js
 export default function ListaOracoesEucaristicasScreen({ navigation }) {
   
   const oracoes = [
@@ -14,15 +15,18 @@ export default function ListaOracoesEucaristicasScreen({ navigation }) {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+    // 'edges' garante que o marrom preencha até o topo do iPhone/Android
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+      <StatusBar barStyle="light-content" />
+      
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+        <Text style={styles.headerTitulo}>Orações Eucarísticas</Text>
         <Text style={styles.instrucao}>Selecione a oração desejada:</Text>
 
         {oracoes.map((item) => (
           <TouchableOpacity 
             key={item.id}
             style={styles.card} 
-            // Aqui as rotas batem com os nomes que colocamos no Stack.Screen do App.js
             onPress={() => navigation.navigate(item.rota)}
             activeOpacity={0.7}
           >
@@ -30,12 +34,12 @@ export default function ListaOracoesEucaristicasScreen({ navigation }) {
               <Text style={styles.titulo}>{item.titulo}</Text>
               <Text style={styles.subtitulo}>{item.subtitulo}</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#8D6E63" />
+            <Ionicons name="chevron-forward" size={22} color="#8D6E63" />
           </TouchableOpacity>
         ))}
 
         <View style={styles.footerNote}>
-          <Ionicons name="information-circle-outline" size={16} color="#999" />
+          <Ionicons name="information-circle-outline" size={16} color="#EFEBE9" />
           <Text style={styles.textoFooter}>Textos conforme o Missal Romano</Text>
         </View>
       </ScrollView>
@@ -44,26 +48,49 @@ export default function ListaOracoesEucaristicasScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F5F5F5' },
-  scrollContent: { padding: 20 },
-  instrucao: { fontSize: 16, color: '#666', marginBottom: 20, textAlign: 'center' },
+  container: { 
+    flex: 1, 
+    backgroundColor: '#8D6E63' // Padronizado para marrom
+  },
+  scrollContent: { 
+    padding: 20,
+    paddingTop: 10
+  },
+  headerTitulo: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 5
+  },
+  instrucao: { 
+    fontSize: 16, 
+    color: '#EFEBE9', 
+    marginBottom: 25, 
+    textAlign: 'center',
+    opacity: 0.9
+  },
   card: {
     backgroundColor: '#FFF',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 20,
-    borderRadius: 15,
+    padding: 22,
+    borderRadius: 20,
     marginBottom: 15,
-    elevation: 2,
+    elevation: 4,
     shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 5,
-    borderLeftWidth: 5,
-    borderLeftColor: '#8D6E63'
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
   },
   info: { flex: 1 },
-  titulo: { fontSize: 18, fontWeight: 'bold', color: '#5D4037' },
+  titulo: { fontSize: 18, fontWeight: 'bold', color: '#3E2723' },
   subtitulo: { fontSize: 14, color: '#8D6E63', marginTop: 4 },
-  footerNote: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 },
-  textoFooter: { color: '#999', fontSize: 12, marginLeft: 5 }
+  footerNote: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    marginTop: 20,
+    marginBottom: 20 
+  },
+  textoFooter: { color: '#EFEBE9', fontSize: 12, marginLeft: 5, opacity: 0.8 }
 });
