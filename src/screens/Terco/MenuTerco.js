@@ -10,11 +10,7 @@ export default function MenuTerco({ navigation }) {
       <LinearGradient colors={['#4E342E', '#3E2723']} style={styles.gradient}>
         <SafeAreaView style={{ flex: 1 }}>
           <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Ionicons name="arrow-back" size={28} color="#fff" />
-            </TouchableOpacity>
             <Text style={styles.tituloHeader}>Santos Terços</Text>
-            <View style={{ width: 28 }} />
           </View>
 
           <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -57,7 +53,7 @@ export default function MenuTerco({ navigation }) {
 const styles = StyleSheet.create({
   flexContainer: { flex: 1 },
   gradient: { flex: 1 },
-  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 15 },
+  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20, paddingVertical: 15 },
   tituloHeader: { fontSize: 22, fontWeight: 'bold', color: '#fff' },
   scrollContent: { padding: 20 },
   instrucao: { color: '#D7CCC8', fontSize: 16, marginBottom: 25, textAlign: 'center' },
