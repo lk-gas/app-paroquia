@@ -10,7 +10,10 @@ import Constants from 'expo-constants';
 import { database } from './src/firebaseConfig.js';
 import { ref, set } from 'firebase/database';
 
+// 🔥 NOVO (auth)
+import { getAuth, signInAnonymously } from "firebase/auth";
 
+// Screens
 import HomeScreen from './src/screens/Institucional/HomeScreen';
 import HistoriaScreen from './src/screens/Institucional/HistoriaScreen';
 import SecretariaScreen from './src/screens/Secretaria/SecretariaScreen';
@@ -81,8 +84,25 @@ function HomeStack() {
 export default function App() {
 
   useEffect(() => {
-    registerForPushNotificationsAsync();
+    iniciarApp();
   }, []);
+
+  async function iniciarApp() {
+    try {
+      const auth = getAuth();
+      await signInAnonymously(auth);
+      console.log("Logado anonimamente");
+
+      setTimeout(() => {
+      registerForPushNotificationsAsync();
+      }, 1000);
+
+      await registerForPushNotificationsAsync();
+
+    } catch (error) {
+      console.log("Erro no login anônimo:", error);
+    }
+  }
 
   async function registerForPushNotificationsAsync() {
     if (!Device.isDevice) {
@@ -109,7 +129,8 @@ export default function App() {
       const token = tokenData.data;
 
       const tokenLimpo = token.replace(/[:[\]]/g, "_"); 
-      set(ref(database, `tokens_notificacao/${tokenLimpo}`), {
+
+      await set(ref(database, `tokens_notificacao/${tokenLimpo}`), {
         pushToken: token,
         plataforma: Platform.OS,
         dataRegistro: new Date().toISOString(),
@@ -139,28 +160,29 @@ export default function App() {
         tabBarStyle: { backgroundColor: '#FFF', height: 60, paddingBottom: 8 }
       }}>
         <Tab.Screen 
-            name="Início" 
-            component={HomeStack} 
-            options={{ tabBarIcon: ({color, size}) => <Ionicons name="home" color={color} size={size} /> }} 
+          name="Início" 
+          component={HomeStack} 
+          options={{ tabBarIcon: ({color, size}) => <Ionicons name="home" color={color} size={size} /> }} 
         />
         
         <Tab.Screen 
-            name="Intenções" 
-            component={IntencoesScreen} 
-            options={{ 
-              tabBarIcon: ({color, size}) => <Ionicons name="heart" color={color} size={size} /> 
-            }} 
+          name="Intenções" 
+          component={IntencoesScreen} 
+          options={{ 
+            tabBarIcon: ({color, size}) => <Ionicons name="heart" color={color} size={size} /> 
+          }} 
         />
 
         <Tab.Screen 
-            name="História" 
-            component={HistoriaScreen} 
-            options={{ tabBarIcon: ({color, size}) => <Ionicons name="book" color={color} size={size} /> }} 
+          name="História" 
+          component={HistoriaScreen} 
+          options={{ tabBarIcon: ({color, size}) => <Ionicons name="book" color={color} size={size} /> }} 
         />
+
         <Tab.Screen 
-            name="Secretaria" 
-            component={SecretariaScreen} 
-            options={{ tabBarIcon: ({color, size}) => <Ionicons name="call" color={color} size={size} /> }} 
+          name="Secretaria" 
+          component={SecretariaScreen} 
+          options={{ tabBarIcon: ({color, size}) => <Ionicons name="call" color={color} size={size} /> }} 
         />
       </Tab.Navigator>
     </NavigationContainer>
