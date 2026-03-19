@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Image, ScrollView, StatusBar, Dimensions } from
 
 const { width } = Dimensions.get('window');
 
-// AJUSTE DE CAMINHO: Agora sobe dois níveis (../../) para achar a pasta assets
 const fotoIgreja = require('../../../assets/icon_saolucas.png'); 
 const fotoPadre = require('../../../assets/icon_padre.jpeg'); 
 
@@ -12,7 +11,6 @@ export default function HistoriaScreen() {
     <ScrollView style={styles.container} bounces={true}>
       <StatusBar barStyle="light-content" />
       
-      {/* HEADER COM IMAGEM DA IGREJA */}
       <View style={styles.headerImagem}>
         <Image source={fotoIgreja} style={styles.imagemFundo} />
         <View style={styles.overlay} />
@@ -23,7 +21,6 @@ export default function HistoriaScreen() {
         <Text style={styles.subtituloIgreja}>Paróquia São Lucas Evangelista</Text>
         <View style={styles.linha} />
 
-        {/* TEXTO DA HISTÓRIA DA PARÓQUIA */}
         <Text style={styles.textoHistoria}>
           A Paróquia São Lucas Evangelista nasceu do sonho e da fé de uma comunidade vibrante. 
           Ela se tornou um farol de esperança e caridade na região de Carapicuíba.
@@ -32,7 +29,6 @@ export default function HistoriaScreen() {
           sempre sob a guia do nosso pároco e com a intercessão de Maria Santíssima.
         </Text>
 
-        {/* CARD DE CITAÇÃO BÍBLICA */}
         <View style={styles.cardCitacao}>
           <Text style={styles.textoCitacao}>
             "Pois decidi nada saber entre vós, a não ser Jesus Cristo, e este, crucificado."
@@ -40,7 +36,6 @@ export default function HistoriaScreen() {
           <Text style={styles.autorCitacao}>— São Lucas</Text>
         </View>
 
-        {/* SEÇÃO DO PÁROCO */}
         <View style={styles.secaoPadre}>
           <View style={styles.cardInfoPadre}>
             <View style={styles.avatarPadre}>
