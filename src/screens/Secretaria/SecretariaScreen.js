@@ -1,9 +1,11 @@
 import React from 'react';
 import { 
   View, Text, StyleSheet, TouchableOpacity, Linking, 
-  ScrollView, StatusBar, SafeAreaView 
+  ScrollView, StatusBar 
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import MapView, { Marker } from 'react-native-maps';
 
 export default function SecretariaScreen({ navigation }) {
   
@@ -11,11 +13,18 @@ export default function SecretariaScreen({ navigation }) {
     Linking.openURL(url);
   };
 
+  // Coordenadas da Paróquia São Lucas Evangelista em Carapicuíba
+  const localizacaoParoquia = {
+    latitude: -23.5385,
+    longitude: -46.8358,
+    latitudeDelta: 0.005,
+    longitudeDelta: 0.005,
+  };
+
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="light-content" />
       
-      {/* ENGRENAGEM NO TOPO ESQUERDO (Exatamente onde a seta indica) */}
       <TouchableOpacity 
         style={styles.botaoEngrenagem} 
         onPress={() => navigation.navigate('Início', { screen: 'LoginAdmin' })}
@@ -42,6 +51,24 @@ export default function SecretariaScreen({ navigation }) {
             <Text style={styles.textoBotao}>Fale conosco no WhatsApp</Text>
           </TouchableOpacity>
 
+          {/* MAPA INTERATIVO */}
+          <View style={styles.containerMapa}>
+            <MapView
+              style={styles.mapa}
+              initialRegion={localizacaoParoquia}
+            >
+              <Marker
+                coordinate={{
+                  latitude: localizacaoParoquia.latitude,
+                  longitude: localizacaoParoquia.longitude,
+                }}
+                title="Paróquia São Lucas Evangelista"
+                description="Av. Inocêncio Seráfico, 2450 - Carapicuíba"
+              />
+            </MapView>
+          </View>
+
+          {/* BOTÃO COMO CHEGAR */}
           <TouchableOpacity 
             style={[styles.botao, { backgroundColor: '#4285F4' }]} 
             onPress={() => abrirLink('https://www.google.com/maps/search/?api=1&query=Paróquia+São+Lucas+Evangelista+Carapicuíba')} 
@@ -59,6 +86,11 @@ export default function SecretariaScreen({ navigation }) {
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.botaoRede, { backgroundColor: '#E1306C' }]} onPress={() => abrirLink('https://instagram.com/paroquiasaolucas')}>
+              <Ionicons name="logo-instagram" size={24} color="#fff" />
+            </TouchableOpacity>
+
+            {/* INSTAGRAM DO PADRE (NOVO ÍCONE) */}
+            <TouchableOpacity style={[styles.botaoRede, { backgroundColor: '#833AB4' }]} onPress={() => abrirLink('https://www.instagram.com/padre_marcio?igsh=Y3cya3FrMTJkMTMx')}>
               <Ionicons name="logo-instagram" size={24} color="#fff" />
             </TouchableOpacity>
 
@@ -99,7 +131,7 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: '#8D6E63' },
   botaoEngrenagem: {
     position: 'absolute',
-    top: 50, // Ajuste dependendo do entalhe (notch) do celular
+    top: 50,
     left: 20,
     zIndex: 10,
     padding: 10,
@@ -112,8 +144,25 @@ const styles = StyleSheet.create({
   secaoBotoes: { width: '100%', alignItems: 'center' },
   labelRedes: { color: '#EFEBE9', fontSize: 14, fontWeight: '600', marginTop: 20, marginBottom: 15, textTransform: 'uppercase', letterSpacing: 1 },
   botao: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '100%', padding: 18, borderRadius: 20, marginBottom: 12, elevation: 5 },
+  
+  // Estilos do Mapa
+  containerMapa: {
+    width: '100%',
+    height: 200,
+    borderRadius: 20,
+    overflow: 'hidden',
+    marginBottom: 12,
+    elevation: 5,
+  },
+  mapa: {
+    width: '100%',
+    height: '100%',
+  },
+
+  // Ajustado para comportar 4 botões perfeitamente
   gridRedes: { flexDirection: 'row', justifyContent: 'space-between', width: '100%', marginBottom: 15 },
-  botaoRede: { width: '30%', height: 60, borderRadius: 20, justifyContent: 'center', alignItems: 'center', elevation: 3 },
+  botaoRede: { width: '22%', height: 60, borderRadius: 20, justifyContent: 'center', alignItems: 'center', elevation: 3 },
+  
   textoBotao: { color: '#fff', fontSize: 17, fontWeight: 'bold', marginLeft: 12 },
   cardInfo: { marginTop: 30, padding: 20, backgroundColor: '#fff', borderRadius: 25, width: '100%', elevation: 4 },
   cardHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 15 },

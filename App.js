@@ -10,10 +10,8 @@ import Constants from 'expo-constants';
 import { database } from './src/firebaseConfig.js';
 import { ref, set } from 'firebase/database';
 
-// 🔥 NOVO (auth)
 import { getAuth, signInAnonymously } from "firebase/auth";
 
-// Screens
 import HomeScreen from './src/screens/Institucional/HomeScreen';
 import HistoriaScreen from './src/screens/Institucional/HistoriaScreen';
 import SecretariaScreen from './src/screens/Secretaria/SecretariaScreen';

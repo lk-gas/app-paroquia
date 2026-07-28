@@ -1,12 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
-// Mudança aqui: importando do pacote correto
 import { SafeAreaView } from 'react-native-safe-area-context'; 
 import { Ionicons } from '@expo/vector-icons';
 
 export default function MenuLiturgiaScreen({ navigation }) {
   return (
-    // O SafeAreaView agora gerencia as margens de forma inteligente
     <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
       <StatusBar barStyle="dark-content" />
       
@@ -16,7 +14,6 @@ export default function MenuLiturgiaScreen({ navigation }) {
         
         <View style={styles.divisor} />
 
-        {/* BOTÃO LITURGIA DIÁRIA */}
         <TouchableOpacity 
           style={styles.card} 
           onPress={() => navigation.navigate('LiturgiaDiaria')} 
@@ -32,7 +29,6 @@ export default function MenuLiturgiaScreen({ navigation }) {
           <Ionicons name="chevron-forward" size={20} color="#8D6E63" />
         </TouchableOpacity>
 
-        {/* BOTÃO ORAÇÕES EUCARÍSTICAS */}
         <TouchableOpacity 
           style={styles.card} 
           onPress={() => navigation.navigate('ListaOracoesEucaristicas')} 
@@ -48,7 +44,6 @@ export default function MenuLiturgiaScreen({ navigation }) {
           <Ionicons name="chevron-forward" size={20} color="#8D6E63" />
         </TouchableOpacity>
 
-        {/* BOTÃO RITO DA MISSA */}
         <TouchableOpacity 
           style={[styles.card, { opacity: 0.6 }]} 
           onPress={() => { /* Futura implementação */ }}

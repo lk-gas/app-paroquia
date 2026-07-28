@@ -13,7 +13,6 @@ export default function TercoGozoso({ navigation }) {
   const montarDados = () => {
     let d = [];
 
-    // --- INÍCIO ---
     d.push({ id: '1', titulo: "Sinal da Cruz", texto: "Pelo sinal da Santa Cruz, livrai-nos, Deus, Nosso Senhor, dos nossos inimigos.\n\nEm nome do Pai e do Filho e do Espírito Santo. Amém." });
     
     d.push({ id: '2', titulo: "Oferecimento", texto: "Divino Jesus, nós Vos oferecemos este terço que vamos rezar, meditando nos mistérios da nossa Redenção. Concedei-nos, por intercessão da Virgem Maria, Mãe de Deus e nossa Mãe, as virtudes que nos são necessárias para bem rezá-lo e a graça de ganharmos as indulgências desta santa devoção.\n\nOferecemos particularmente, em desagravo dos pecados cometidos contra o Santíssimo Coração de Jesus e Imaculado Coração de Maria, pela paz do mundo, pela conversão dos pecadores, pelas almas do Purgatório, pelas intenções do Santo Padre, pelo aumento e santificação do Clero, pelo nosso vigário, pela santificação das famílias, pelas missões, pelos doentes, pelos agonizantes, por todos aqueles que pediram nossas orações, pelo nosso país e por todas as nossas intenções particulares." });
@@ -22,7 +21,6 @@ export default function TercoGozoso({ navigation }) {
 
     d.push({ id: '4', titulo: "Pai-Nosso", texto: "Pai-Nosso que estais nos céus, santificado seja o vosso nome, venha a nós o vosso reino, seja feita a vossa vontade assim na terra como no céu. O pão nosso de cada dia nos dai hoje, perdoai-nos as nossas ofensas assim como nós perdoamos a quem nos tem ofendido, e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém." });
 
-    // --- 3 AVE MARIAS INICIAIS (COM CONTADOR) ---
     for (let i = 1; i <= 3; i++) {
       d.push({ 
         id: `ave-ini-${i}`, 
@@ -77,7 +75,6 @@ export default function TercoGozoso({ navigation }) {
     ];
 
     mistérios.forEach((m, idx) => {
-      // 1. Contemplação (Texto Bíblico + Pedimos + CIC)
       d.push({ 
         id: `cont-${idx}`, 
         titulo: m.t, 
@@ -85,10 +82,8 @@ export default function TercoGozoso({ navigation }) {
         texto: `${m.biblia}\n\n${m.pedimos}\n\n${m.cic}` 
       });
 
-      // 2. Pai Nosso
       d.push({ id: `p-mist-${idx}`, titulo: m.t, subtitulo: "Pai-Nosso", texto: "Pai-Nosso que estais nos céus, santificado seja o vosso nome, venha a nós o vosso reino, seja feita a vossa vontade assim na terra como no céu. O pão nosso de cada dia nos dai hoje, perdoai-nos as nossas ofensas assim como nós perdoamos a quem nos tem ofendido, e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém." });
 
-      // 3. 10 Ave Marias
       for (let j = 1; j <= 10; j++) {
         d.push({ 
           id: `a-mist-${idx}-${j}`, 
@@ -101,7 +96,6 @@ export default function TercoGozoso({ navigation }) {
         });
       }
 
-      // 4. Glória e Oração final da dezena
       d.push({ 
         id: `g-mist-${idx}`, 
         titulo: m.t, 
@@ -110,7 +104,6 @@ export default function TercoGozoso({ navigation }) {
       });
     });
 
-    // --- ENCERRAMENTO ---
     d.push({ id: 'agrad', titulo: "Agradecimento", texto: "Infinitas graças vos damos, Soberana Rainha, pelos benefícios que todos os dias recebemos de vossas mãos liberais. Dignai-vos, agora e para sempre, tomar-nos debaixo de vosso poderoso amparo e para mais vos alegrar vos saudamos com uma Salve Rainha:" });
     
     d.push({ id: 'salve', titulo: "Salve Rainha", texto: "Salve, Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, Salve! A vós bradamos, os degredados filhos de Eva, a vós suspiramos, gemendo e chorando neste vale de lágrimas! Eia, pois, Advogada nossa, esses vossos olhos misericordiosos a nós volvei, e depois deste desterro mostrai-nos Jesus, bendito fruto do vosso ventre! Ó clemente, ó piedosa, ó doce sempre Virgem Maria.\n\nRogai por nós, Santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. Amém." });

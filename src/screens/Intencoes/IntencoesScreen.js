@@ -14,8 +14,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-
-// Importando a configuração do Firebase que você já tem
 import { database } from '../../firebaseConfig'; 
 import { ref, push, set } from 'firebase/database';
 

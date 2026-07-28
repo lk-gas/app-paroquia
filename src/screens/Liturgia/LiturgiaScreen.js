@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, StatusBar } from 'react-native';
-// Substituído o SafeAreaView nativo pelo do safe-area-context
 import { SafeAreaView } from 'react-native-safe-area-context'; 
 import axios from 'axios';
 import { Ionicons } from '@expo/vector-icons';

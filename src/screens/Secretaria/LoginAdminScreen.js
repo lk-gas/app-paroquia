@@ -11,7 +11,6 @@ export default function LoginAdminScreen({ navigation }) {
   const [senha, setSenha] = useState('');
 
   const handleLogin = () => {
-    // Credenciais de administrador
     if (email.toLowerCase() === 'admin@saolucas.com' && senha === 'saolucas') {
       Alert.alert("Acesso Permitido", "Bem-vindo, Administrador!");
       navigation.navigate('Início', { 
