@@ -12,7 +12,6 @@ export default function Eucaristica01() {
         <Text style={styles.subtituloHeader}>(Cânon Romano)</Text>
         <View style={styles.divisor} />
 
-        {/* --- DIÁLOGO INICIAL --- */}
         <Text style={styles.textoPadre}><Text style={styles.rubrica}>V.</Text> O Senhor esteja convosco.</Text>
         <Text style={styles.textoPovo}><Text style={styles.rubrica}>R.</Text> Ele está no meio de nós.</Text>
         <Text style={styles.textoPadre}><Text style={styles.rubrica}>V.</Text> Corações ao alto.</Text>

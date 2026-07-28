@@ -1,35 +1,43 @@
 {
   "expo": {
-    "name": "AppSaoLucas",
+    "name": "Paróquia São Lucas",
     "slug": "AppSaoLucas",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon_saolucas.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+
     "extra": {
       "eas": {
         "projectId": "6d44c4ab-5e75-4038-a0c2-8384feaf5f4f"
       }
     },
-    "owner": "lk_gas"
-  },
-  "splash": {
-    "image": "./assets/icon_saolucas.png",
-    "resizeMode": "contain",
-    "backgroundColor": "#8D6E63"
-  },
-  "ios": {
-    "supportsTablet": true
-  },
-  "android": {
-    "adaptiveIcon": {
-      "foregroundImage": "./assets/icon_saolucas.png",
-      "backgroundColor": "#FFFFFF"
+
+    "owner": "lk_gas",
+
+    "splash": {
+      "image": "./assets/icon_saolucas.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#8D6E63"
     },
-    "edgeToEdgeEnabled": true
-  },
-  "web": {
-    "favicon": "./assets/favicon.png"
+
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "br.com.paroquiasaolucas.app"
+    },
+
+    "android": {
+      "package": "br.com.paroquiasaolucas.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon_saolucas.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "edgeToEdgeEnabled": true
+    },
+
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }

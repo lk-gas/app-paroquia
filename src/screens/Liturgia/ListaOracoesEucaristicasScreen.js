@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
-// Atualizado: Importando da biblioteca que evita o alerta
 import { SafeAreaView } from 'react-native-safe-area-context'; 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -15,7 +14,6 @@ export default function ListaOracoesEucaristicasScreen({ navigation }) {
   ];
 
   return (
-    // 'edges' garante que o marrom preencha até o topo do iPhone/Android
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <StatusBar barStyle="light-content" />
       

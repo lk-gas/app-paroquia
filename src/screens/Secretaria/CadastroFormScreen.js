@@ -27,7 +27,6 @@ export default function CadastroFormScreen({ route, navigation }) {
     setCarregando(true);
 
     try {
-      // 1. Grava no Firebase
       const pasta = tipo === 'Dizimista' ? 'dizimistas' : tipo === 'Sócio Operário' ? 'socios' : 'outros';
       await push(ref(database, `cadastros/${pasta}`), {
         tipo,
@@ -39,7 +38,6 @@ export default function CadastroFormScreen({ route, navigation }) {
         data: new Date().toLocaleDateString('pt-BR')
       });
 
-      // 2. Envia o e-mail via EmailJS (Mantendo suas chaves originais)
       await emailjs.send(
         'service_1jzlhyr',
         'template_838qifm',

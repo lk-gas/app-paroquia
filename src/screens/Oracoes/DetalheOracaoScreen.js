@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, ScrollView, StatusBar, SafeAreaView, Dimensions
 const { width } = Dimensions.get('window');
 
 export default function DetalheOracaoScreen({ route }) {
-  // Caso os parâmetros não cheguem por algum motivo, evitamos o erro
   const { titulo = "Oração", texto = "" } = route.params || {};
 
   return (
@@ -15,7 +14,6 @@ export default function DetalheOracaoScreen({ route }) {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.card}>
-          {/* Detalhe estético no topo do card */}
           <View style={styles.detalheTopo} />
           
           <Text style={styles.titulo}>{titulo}</Text>

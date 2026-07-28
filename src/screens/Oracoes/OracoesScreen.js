@@ -26,13 +26,13 @@ export default function OracoesScreen({ navigation }) {
     { 
       id: '4', 
       titulo: 'Oração de São Lucas', 
-      icone: 'brush-outline', // Mudado para pincel (ícone clássico de Lucas médico/pintor)
+      icone: 'brush-outline', 
       texto: 'Ó Deus, que escolhestes São Lucas para revelar em suas palavras e escritos o mistério do vosso amor para com os pobres, concedei aos que já se gloriam do vosso nome perseverar num só coração e numa só alma, e a todos os povos do mundo ver a vossa salvação.Por vosso Senhor Jesus Cristo, vosso Filho, na unidade do Espírito Santo.Ó Senhor, nos abençoe, nos livre de todo o mal, nos conduza à vida eterna. Amém.São Lucas Evangelista, rogai por nós.'
     },
     { 
       id: '5', 
       titulo: 'Oração de Santa Teresinha', 
-      icone: 'flower-outline', // Ícone de flor (Rosas de Teresinha)
+      icone: 'flower-outline', 
       texto: 'Ó Deus, que escolhestes São Lucas para revelar em suas palavras e escritos o mistério do vosso amor para com os pobres, concedei aos que já se gloriam do vosso nome perseverar num só coração e numa só alma, e a todos os povos do mundo ver a vossa salvação.Por vosso Senhor Jesus Cristo, vosso Filho, na unidade do Espírito Santo.Ó Senhor, nos abençoe, nos livre de todo o mal, nos conduza à vida eterna. Amém.São Lucas Evangelista, rogai por nós.'
     },
     { 
