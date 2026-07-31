@@ -6,27 +6,25 @@
     "orientation": "portrait",
     "icon": "./assets/icon_saolucas.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-
+    "newArchEnabled": false,
     "extra": {
       "eas": {
         "projectId": "6d44c4ab-5e75-4038-a0c2-8384feaf5f4f"
       }
     },
-
     "owner": "lk_gas",
-
     "splash": {
       "image": "./assets/icon_saolucas.png",
       "resizeMode": "contain",
       "backgroundColor": "#8D6E63"
     },
-
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "br.com.paroquiasaolucas.app"
+      "bundleIdentifier": "br.com.paroquiasaolucas.app",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
-
     "android": {
       "package": "br.com.paroquiasaolucas.app",
       "adaptiveIcon": {
@@ -35,7 +33,6 @@
       },
       "edgeToEdgeEnabled": true
     },
-
     "web": {
       "favicon": "./assets/favicon.png"
     }

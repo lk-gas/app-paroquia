@@ -5,7 +5,10 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, {
+  Marker,
+  PROVIDER_DEFAULT,
+} from 'react-native-maps';
 
 export default function SecretariaScreen({ navigation }) {
   
@@ -52,20 +55,21 @@ export default function SecretariaScreen({ navigation }) {
           </TouchableOpacity>
 
           {/* MAPA INTERATIVO */}
-          <View style={styles.containerMapa}>
-            <MapView
-              style={styles.mapa}
-              initialRegion={localizacaoParoquia}
-            >
-              <Marker
-                coordinate={{
-                  latitude: localizacaoParoquia.latitude,
-                  longitude: localizacaoParoquia.longitude,
-                }}
-                title="Paróquia São Lucas Evangelista"
-                description="Av. Inocêncio Seráfico, 2450 - Carapicuíba"
-              />
-            </MapView>
+         <View style={styles.containerMapa}>
+         <MapView
+          provider={PROVIDER_DEFAULT}
+          style={styles.mapa}
+          initialRegion={localizacaoParoquia}
+          >
+          <Marker
+          coordinate={{
+          atitude: localizacaoParoquia.latitude,
+          longitude: localizacaoParoquia.longitude,
+          }}
+          title="Paróquia São Lucas Evangelista"
+          description="Av. Inocêncio Seráfico, 2450 - Carapicuíba"
+          />
+          </MapView>
           </View>
 
           {/* BOTÃO COMO CHEGAR */}
